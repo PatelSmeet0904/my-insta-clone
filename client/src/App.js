@@ -26,7 +26,7 @@ const Routing = ()=>{
       if(!history.location.pathname.startsWith('/reset'))
            history.push('/signin')
     }
-  },[])
+  },[dispatch, history])
   return(
     <Switch>
       <Route exact path="/" >

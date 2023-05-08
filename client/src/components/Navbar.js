@@ -27,6 +27,38 @@ const NavBar = () => {
   const renderList = () => {
     if (state) {
       return [
+        <li key="1">
+          {isNavOpen ? (
+            <div className="fix-style">
+              <li key="1">
+                <i
+                  data-target="modal1"
+                  className="large material-icons modal-trigger"
+                  style={{ color: "black" }}
+                >
+                  search
+                </i>
+              </li>
+              ,
+              <li className="close-button">
+                <button
+                  className="modal-close waves-effect waves-green btn-flat"
+                  onClick={handleNavToggle}
+                >
+                  <i className="material-icons">close</i>
+                </button>
+              </li>
+            </div>
+          ) : (
+            <i
+              data-target="modal1"
+              className="large material-icons modal-trigger"
+              style={{ color: "black" }}
+            >
+              search
+            </i>
+          )}
+        </li>,
         <li key="2">
           <Link to="/profile">Profile</Link>
         </li>,
@@ -97,15 +129,6 @@ const NavBar = () => {
             isNavOpen ? "sidenav-open" : ""
           }`}
         >
-          <li key="1">
-            <i
-              data-target="modal1"
-              className="large material-icons modal-trigger"
-              style={{ color: "black" }}
-            >
-              search
-            </i>
-          </li>
           {renderList()}
         </ul>
       </div>
@@ -113,25 +136,6 @@ const NavBar = () => {
         id="mobile-demo"
         className={`sidenav ${isNavOpen ? "sidenav-open" : ""}`}
       >
-        <div className="fix-style">
-          <li key="1">
-            <i
-              data-target="modal1"
-              className="large material-icons modal-trigger"
-              style={{ color: "black" }}
-            >
-              search
-            </i>
-          </li>,
-          <li className="close-button">
-            <button
-              className="modal-close waves-effect waves-green btn-flat"
-              onClick={handleNavToggle}
-            >
-              <i className="material-icons">close</i>
-            </button>
-          </li>
-        </div>
         {renderList()}
       </ul>
       <div
@@ -148,7 +152,7 @@ const NavBar = () => {
             onChange={(e) => fetchUsers(e.target.value)}
           />
           <ul className="collection">
-            {userDetails.map((item) => {
+            {userDetails?.map((item) => {
               return (
                 <Link
                   to={
